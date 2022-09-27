@@ -1,0 +1,40 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins&display=swap');
+
+body{
+  background-color: rgb(20, 20, 20);
+}
+
+div{
+  width: 50%;
+  margin: 10% auto;
+  text-align: center;
+}
+
+p{
+  color: #FFF;
+  font-family: 'Poppins';
+}
+
+input{
+  width: 90%;
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  background-color: rgb(236, 236, 236);
+  margin: 10px auto;
+  font-family: 'Poppins';
+}
+
+#btn{
+  background-color: brown;
+  border: none;
+  border-radius: 5px;
+  width: 80%;
+  padding: 10px;
+  color: #FFF;
+}
+
+h1{
+  font-family: 'Bebas Neue';
+  color: #FFF;
+}
