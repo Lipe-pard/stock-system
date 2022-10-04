@@ -1,9 +1,10 @@
 import './App.css';
-import {useRef, useState} from 'react'
+import {useEffect, useRef, useState, useCallback} from 'react'
 
 function App() {
 
   const [lucro, setLucro] = useState()
+  const [totalLucro, setTotalLucro] = useState()
 
   let nomeRef = useRef();
   let quantRef = useRef();
@@ -53,7 +54,29 @@ function App() {
         alert("Deu certo")
       });
   }
-  
+
+  useEffect(() => {
+    fetch("http://localhost/stock-system/api/product/select-lucro")
+        .then((response) => response.json())
+        .then((data) => setTotalLucro(data));
+  }, [])
+  const arrayLucro = totalLucro && totalLucro.map((luc) => {
+    return luc.lucro
+  })
+  let arrayNumber = arrayLucro && arrayLucro.map(Number)
+  const total = arrayNumber && arrayNumber.reduce((total, currentElement) => total + currentElement)
+
+  const resposeFinal = useCallback( (total, lucro) =>{
+    const response = total + lucro
+    console.log(response)
+    return response
+  },[])
+
+  const HanderRespose = () => {
+    if(lucro){
+      return resposeFinal(total, lucro)
+    }
+  }
 
   return (
     <div>
@@ -66,6 +89,7 @@ function App() {
       <input placeholder='Calcular' type="submit" id='btn'/>
      </form>
       <p>Lucro: {lucro}</p>
+      {HanderRespose()}
     </div>
   );
 }
